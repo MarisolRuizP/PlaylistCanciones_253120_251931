@@ -11,5 +11,5 @@ data class Song(
 )
 
 val sampleSongs = listOf(
-    Song(id = 1, nombre = "Your Favorite Toy", autor = "Foo Fighters", duracion = 2.55, imagen = R.drawable.Your_Favorite_Toy)
+    Song(id = 1, nombre = "Your Favorite Toy", autor = "Foo Fighters", duracion = 2.55, imagen = R.drawable.yourfavoritetoy)
 )
