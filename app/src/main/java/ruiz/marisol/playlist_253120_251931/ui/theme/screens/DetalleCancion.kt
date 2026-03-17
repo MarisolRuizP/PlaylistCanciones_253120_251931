@@ -21,11 +21,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ruiz.marisol.playlist_253120_251931.R
 import ruiz.marisol.playlist_253120_251931.data.models.Song
+import ruiz.marisol.playlist_253120_251931.viewModel.SongViewModel
 
 @Composable
-fun DetalleCancion(song: Song){
+fun DetalleCancion(song: Song, viewModel: SongViewModel, onBack: () -> Unit, modifier: Modifier = Modifier){
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
@@ -56,14 +57,32 @@ fun DetalleCancion(song: Song){
         Spacer(modifier = Modifier.height(18.dp))
         Button(
             onClick = {
-
+                viewModel.reproducirCancion()
             },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         ) {
-
             Text(text = "Reproducir")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
 
+        if(viewModel.estaBuffering) {
+            Text(text = "Cargando ...",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        } else if (viewModel.CancionReproduciendo == true) {
+            Text(text = "Reproduciendo canción",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Spacer(modifier = Modifier.height(18.dp))
+        Button(
+            onClick = onBack,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        ) {
+            Text(text = "Volver")
         }
     }
 }
@@ -71,6 +90,5 @@ fun DetalleCancion(song: Song){
 @Preview(showBackground = true)
 @Composable
 fun DetalleCancionPreview(){
-    DetalleCancion(Song(id = 1, nombre = "Your Favorite Toy", autor = "Foo Fighters", duracion = 2.55, imagen = R.drawable.yourfavoritetoy)
-    )
+
 }

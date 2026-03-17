@@ -25,9 +25,9 @@ import ruiz.marisol.playlist_253120_251931.R
 import ruiz.marisol.playlist_253120_251931.data.models.Song
 
 @Composable
-fun SongCard (song: Song) {
+fun SongCard (song: Song, modifier: Modifier = Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
             ,
